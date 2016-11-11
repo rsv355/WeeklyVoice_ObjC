@@ -21,6 +21,7 @@
 @end
 
 
+
 @interface EntertainmentVC : UIViewController <CCKFNavDrawerDelegate>
 
 @property (weak, nonatomic)id<EntertainmentVcDelegate> EntertainmentVcDelegate;

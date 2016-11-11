@@ -11,7 +11,7 @@
 {
     int index;
     NSTimer *imageTimer;
-    NSString *jkgsjf;
+    NSString *mmmmm;
 }
 
 

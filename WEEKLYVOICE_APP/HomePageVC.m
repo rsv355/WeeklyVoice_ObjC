@@ -12,6 +12,7 @@
 {
     int index;
     NSTimer *imageTimer;
+    NSString *jkgsjf;
 }
 
 

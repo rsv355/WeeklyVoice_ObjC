@@ -21,7 +21,13 @@
 
 #define FETCH_CATEGORY @"/category.php?format=json"
 
+#define FETCH_SUB_CATEGORY @"/sub_category.php?format=json"
+
+#define FETCH_CATEGORY_NEWS @"/categorynews.php?format=json&cat_id="
+
 #define FETCH_BREAKING_NEWS @"/breakingnews.php?format=json"
+
+
 
 
 

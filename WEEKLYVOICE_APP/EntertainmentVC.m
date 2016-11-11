@@ -20,13 +20,14 @@
 @implementation EntertainmentVC
 {
     NSArray *dropdownNameArray;
-
+    NSMutableArray *imageArray, *nameArray;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    NSLog(@"----------- %@",self.passedString);
     
     self.rootNav = (CCKFNavDrawer *)self.navigationController;
     [self.rootNav setCCKFNavDrawerDelegate:self];
@@ -38,12 +39,14 @@
     }
     else
     {
-        self.lblName.text = [[NSUserDefaults standardUserDefaults]valueForKey:@"catTitle"];
+//        self.lblName.text = [[NSUserDefaults standardUserDefaults]valueForKey:@"catTitle"];
+        
+        self.lblName.text = _passedString;
 
     }
     
     
-    self.lblSubCategoryTitle.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"subcatTitle"];
+//    self.lblSubCategoryTitle.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"subcatTitle"];
     
     
     dropdownNameArray = [[NSArray alloc]initWithObjects:@"Tell yout Friend",@"E-paper",@"Facebook Page", nil];
@@ -56,6 +59,8 @@
 
     
     [self setCustomButton];
+    
+    [self fetchDataFromWebService];
     
     
 }
@@ -104,6 +109,45 @@
 
 }
 
+
+#pragma mark - Fetch Data From WebService
+-(void)fetchDataFromWebService
+{
+    [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager GET:[NSString stringWithFormat:@"%@%@%@",BASE_URL,FETCH_CATEGORY_NEWS,_passCategoryId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+        
+        NSDictionary *responseArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+        
+        [self parseDataResponseObject:responseArr];
+        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Network error. Please try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [errorAlert show];
+        
+    }];
+
+    
+}
+
+-(void)parseDataResponseObject:(NSDictionary *)dictionary
+{
+    
+    imageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
+    
+    nameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
+    
+    [_tableView reloadData];
+}
+
 #pragma mark - Navigation bar button Action
 
 -(void)btnBackAction:(UIButton *)sender
@@ -111,14 +155,23 @@
     HomePageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-- (IBAction)leftMenuBtnTap:(id)sender {
+- (IBAction)AppIconTap:(id)sender {
     
-    [self.EntertainmentVcDelegate RefreshTableviewData:_passedString];
+    NSString *catID = [[NSUserDefaults standardUserDefaults]valueForKey:@"categoryId"];
+    
+    [self.EntertainmentVcDelegate RefreshTableviewData:_passedString :catID];
     
     [self.rootNav drawerToggle];
-    
 }
+- (IBAction)leftMenuTap:(id)sender {
+    
+     NSString *catID = [[NSUserDefaults standardUserDefaults]valueForKey:@"categoryId"];
+    [self.EntertainmentVcDelegate RefreshTableviewData:_passedString :catID];
+    
+    [self.rootNav drawerToggle];
+}
+
+
 - (IBAction)btnDropdownTap:(id)sender {
     
     if(_btnDropdown.selected == false)
@@ -137,24 +190,27 @@
     
     HomePageVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"HomePageVC"];
     
-    [self.EntertainmentVcDelegate RefreshTableviewData:@""];
+    [self.EntertainmentVcDelegate RefreshTableviewData:@"" :@""];
     
+     [[NSUserDefaults standardUserDefaults]setValue:@"NO" forKey:@"SUBCAT"];
     
     [self.navigationController pushViewController:vc animated:YES];
     
    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark -CCKFNavDrawer Selection Section Method
+#pragma mark - CCKFNavDrawer Selection Section Method
 
--(void)CCKFNavDrawerSelection:(NSString *)selectedIndexString
+-(void)CCKFNavDrawerSelection:(NSString *)selectedIndexString :(NSString *)categoryId
 {
 //    NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
     
     _passedString = selectedIndexString;
     
-    NSLog(@"DrawerSelected String:- %@",selectedIndexString);
     
+    NSLog(@"--------DrawerSelected String:- %@",selectedIndexString);
+    
+   
     [[NSUserDefaults standardUserDefaults]setValue:selectedIndexString forKey:@"subcatTitle"];
     
     
@@ -163,7 +219,7 @@
 
 
 
-#pragma mark:- UITableview Delegate Methods
+#pragma mark - UITableview Delegate Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -174,7 +230,7 @@
     else
     {
         
-        return 10;
+        return nameArray.count;
     }
     
 }
@@ -192,7 +248,11 @@
     }
     else {
     EntertainmentVcCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
+        
+        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[imageArray objectAtIndex:indexPath.row]];
+        [cell.imageview setImageWithURL:[NSURL URLWithString:strImagePath]];
+        cell.lblTitle.text = [nameArray objectAtIndex:indexPath.row];
+        
     return cell;
     }
 }

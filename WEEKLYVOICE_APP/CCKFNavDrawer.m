@@ -16,7 +16,10 @@
 
 @interface CCKFNavDrawer () <EntertainmentVcDelegate>
 {
-    NSMutableArray *categoryNameArray;
+    
+    
+    NSMutableArray *categoryNameArray, *categoryArray, *categoryIdArray;
+    
 }
 
 @property (nonatomic) BOOL isOpen;
@@ -50,8 +53,32 @@
     
     [self setUpDrawer];
     
-    [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_CATEGORY]];
+    [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_CATEGORY] for:1];
  
+    
+    categoryTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, _drawerView.drawerTableView.frame.size.width, 40)];
+    categoryTitleLabel.text = @"Title";
+    categoryTitleLabel.font = [UIFont boldSystemFontOfSize:15];
+    
+    categoryTitleLabel.backgroundColor = [UIColor colorWithRed:152.0/255.0 green:152.0/255.0 blue:152.0/255.0 alpha:1.0];
+    
+    categoryTitleLabel.textColor = [UIColor whiteColor];
+    
+    categoryTitleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    _drawerView.drawerTableView.tableHeaderView = categoryTitleLabel;
+    
+    categoryTitleLabel.hidden = YES;
+    
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    
+    tapGesture.numberOfTapsRequired = 1;
+    
+    [categoryTitleLabel addGestureRecognizer:tapGesture];
+    
+    [categoryTitleLabel setUserInteractionEnabled:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,9 +87,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITapGestureRecognizer
+-(void)tapAction:(UITapGestureRecognizer *)gesture
+{
+    EntertainmentVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EntertainmentVC"];
+    
+    vc.EntertainmentVcDelegate = (id)self;
+    
+    _selectedString = categoryTitleLabel.text;
+    
+    vc.passedString = _selectedString;
+    vc.passCategoryId = _categoryId;
+    
+    [self pushViewController:vc animated:YES];
+    
+    [self closeNavigationDrawer];
 
+}
 
--(void)fetchDataFromWebService: (NSString *)stringURL
+#pragma mark - Fetch & Parse Data From WEBSERVICE
+
+-(void)fetchDataFromWebService: (NSString *)stringURL for:(NSInteger)selectInteger
 {
     
     [MBProgressHUD showHUDAddedTo: self.view animated:YES];
@@ -76,7 +121,7 @@
         
         NSDictionary *responseArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
         
-        [self parseDataResponseObject:responseArr];
+        [self parseDataResponseObject:responseArr for:selectInteger];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
@@ -91,15 +136,30 @@
     
     
 }
--(void)parseDataResponseObject:(NSDictionary *)dictionary
+-(void)parseDataResponseObject:(NSDictionary *)dictionary for:(NSInteger)selectInteger
 {
     
-    categoryNameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"cat_name"];
+    if (selectInteger == 1) {
+        categoryArray = [[dictionary objectForKey:@"posts"]valueForKey:@"post"];
+        
+        categoryNameArray = [categoryArray valueForKey:@"cat_name"];
+        categoryIdArray = [categoryArray valueForKey:@"tid"];
+        
+        _drawerView.drawerTableView.reloadData;
+        
+        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+
+    }
     
-    _drawerView.drawerTableView.reloadData;
-    
-    [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
-    
+    else if (selectInteger == 2){
+        
+        categoryNameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"cat_name"];
+        categoryIdArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"tid"];
+        
+        _drawerView.drawerTableView.reloadData;
+
+        
+    }
 
     
 }
@@ -283,12 +343,39 @@
 
 #pragma mark - EntertainmentVcDelegate Method
 
--(void)RefreshTableviewData:(NSString *)strSelected
+-(void)RefreshTableviewData:(NSString *)strSelected :(NSString *)categoryID
 {
     NSLog(@"String Selected := %@",strSelected);
     _selectedString = strSelected;
+    _categoryId = categoryID;
     
-    [self viewDidLoad];
+    if ([categoryID isEqualToString:@""]) {
+        
+        [[NSUserDefaults standardUserDefaults]setValue:@"NO" forKey:@"SUBCAT"];
+
+        [self viewDidLoad];
+
+    } else {
+        
+        [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@&tid=%@",BASE_URL,FETCH_SUB_CATEGORY,categoryID] for:2];
+    }
+    
+ 
+    
+    NSString *value = [[NSUserDefaults standardUserDefaults]valueForKey:@"SUBCAT"];
+    
+    if ([value isEqualToString:@"YES"]) {
+        categoryTitleLabel.hidden = NO;
+        
+        categoryTitleLabel.text = [[NSUserDefaults standardUserDefaults]valueForKey:@"catTitle"];
+    } else
+    {
+        categoryTitleLabel.hidden = YES;
+    }
+    
+    
+    [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+    
     
     
 }
@@ -331,21 +418,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.CCKFNavDrawerDelegate CCKFNavDrawerSelection:categoryNameArray[indexPath.row]];
+    [_drawerView.drawerTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.CCKFNavDrawerDelegate CCKFNavDrawerSelection:categoryNameArray[indexPath.row] :categoryIdArray[indexPath.row]];
     
     [self closeNavigationDrawer];
     
     _selectedString = [categoryNameArray objectAtIndex:indexPath.row];
     
 
-    
     EntertainmentVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EntertainmentVC"];
     
     vc.EntertainmentVcDelegate = (id)self;
     
     vc.passedString = _selectedString;
-    
-//    vc.passedSubCategoryTitle = _selectedSubCategoryString;
+    vc.passCategoryId = [categoryIdArray objectAtIndex:indexPath.row];
     
     [self pushViewController:vc animated:YES];
     

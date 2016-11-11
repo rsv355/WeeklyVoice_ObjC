@@ -21,6 +21,7 @@
 #import "WEEKLYVOICEURL.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
+#import "UIImageView+AFNetworking.h"
 
 #import "UIViewController+Transition.h"
 

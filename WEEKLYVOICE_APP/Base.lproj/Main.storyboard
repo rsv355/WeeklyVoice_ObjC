@@ -23,13 +23,13 @@
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-Sw-Al7">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="179" id="K3J-wJ-VZC"/>
+                                            <constraint firstAttribute="width" constant="147" id="K3J-wJ-VZC"/>
                                             <constraint firstAttribute="height" constant="23" id="Z44-4E-6hH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" image="new_logo_1.png"/>
                                         <connections>
-                                            <action selector="leftMenuBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HfA-7k-Yn9"/>
+                                            <action selector="AppLogoBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="INi-7b-Q6J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKU-DH-UKX">
@@ -55,17 +55,31 @@
                                             <action selector="btnDropdownTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wnv-jV-3kl"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOZ-dQ-Tzy">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="AgJ-Dj-Arj"/>
+                                            <constraint firstAttribute="width" constant="35" id="z5v-cP-nc3"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" image="default_icon.png"/>
+                                        <connections>
+                                            <action selector="leftMenuBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YCU-Sz-hYU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.18823529411764706" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kpu-Sw-Al7" secondAttribute="bottom" constant="12" id="62a-bJ-wxc"/>
-                                    <constraint firstItem="kpu-Sw-Al7" firstAttribute="leading" secondItem="IxP-nW-UJT" secondAttribute="leading" constant="8" id="Hic-ib-DpC"/>
+                                    <constraint firstItem="kpu-Sw-Al7" firstAttribute="leading" secondItem="qOZ-dQ-Tzy" secondAttribute="trailing" constant="3" id="Ia2-Sc-EYU"/>
                                     <constraint firstAttribute="bottom" secondItem="W70-VC-bqK" secondAttribute="bottom" constant="8" id="KQK-vr-QTg"/>
                                     <constraint firstAttribute="trailing" secondItem="W70-VC-bqK" secondAttribute="trailing" constant="4" id="O9t-22-Pcv"/>
                                     <constraint firstAttribute="bottom" secondItem="MKU-DH-UKX" secondAttribute="bottom" constant="13" id="PvB-yP-W2E"/>
                                     <constraint firstAttribute="height" constant="65" id="eRW-WG-CQS"/>
                                     <constraint firstItem="kpu-Sw-Al7" firstAttribute="top" secondItem="IxP-nW-UJT" secondAttribute="top" constant="30" id="kby-eZ-oPh"/>
                                     <constraint firstItem="W70-VC-bqK" firstAttribute="leading" secondItem="MKU-DH-UKX" secondAttribute="trailing" constant="15" id="ktf-8v-5Mh"/>
+                                    <constraint firstItem="qOZ-dQ-Tzy" firstAttribute="leading" secondItem="IxP-nW-UJT" secondAttribute="leading" constant="2" id="pUf-NM-pHD"/>
+                                    <constraint firstAttribute="bottom" secondItem="qOZ-dQ-Tzy" secondAttribute="bottom" constant="6" id="pqN-kP-Z0c"/>
+                                    <constraint firstItem="qOZ-dQ-Tzy" firstAttribute="top" secondItem="IxP-nW-UJT" secondAttribute="top" constant="24" id="teE-qP-cAJ"/>
                                     <constraint firstItem="MKU-DH-UKX" firstAttribute="top" secondItem="IxP-nW-UJT" secondAttribute="top" constant="24" id="vrY-HX-e5w"/>
                                 </constraints>
                             </view>
@@ -87,7 +101,7 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myV-7m-Sju">
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYZ-fx-3Me"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weeklyvoice_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="wYZ-fx-3Me"/>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFV-iz-oCQ">
                                                 <connections>
                                                     <action selector="btnTopStoriesTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oBS-Mx-7ny"/>
@@ -157,7 +171,7 @@
                                         <rect key="frame" x="0.0" y="28" width="137" height="39"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kTP-Bg-17l" id="4l8-Y0-YMy">
-                                            <frame key="frameInset" width="137" height="38"/>
+                                            <frame key="frameInset" width="137" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell your Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-lR-3gN">
@@ -217,7 +231,7 @@
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A75-55-SrU">
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="internation_tour.png" translatesAutoresizingMaskIntoConstraints="NO" id="DLc-Oj-rT5"/>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weeklyvoice_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="DLc-Oj-rT5"/>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="entertainment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxU-nd-KZL">
                                                                             <color key="backgroundColor" red="0.96862745100000003" green="0.23529411759999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
@@ -302,13 +316,13 @@
                                                         <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="fhu-WG-Qmo" id="Srm-2T-wwS">
-                                                            <frame key="frameInset" width="375" height="98"/>
+                                                            <frame key="frameInset" width="375" height="99"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IMf-gr-ZpI">
                                                                     <frame key="frameInset" width="1000" height="1000"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="internation_tour.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-uI-4pG">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="weeklyvoice_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-uI-4pG">
                                                                             <frame key="frameInset" width="1000" height="1000"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="88" id="Iue-UV-q0a"/>
@@ -472,7 +486,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" image="new_logo_1.png"/>
                                         <connections>
-                                            <action selector="leftMenuBtnTap:" destination="NLP-Wh-uyf" eventType="touchUpInside" id="KJ0-ZD-ZmW"/>
+                                            <action selector="AppIconTap:" destination="NLP-Wh-uyf" eventType="touchUpInside" id="PoY-jv-jHh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbt-Vo-Ptg">
@@ -505,21 +519,36 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNQ-s9-hju">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="eZp-NC-ESr"/>
+                                            <constraint firstAttribute="height" constant="35" id="z0g-HL-Btf"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                        <state key="normal" image="default_icon.png"/>
+                                        <connections>
+                                            <action selector="leftMenuTap:" destination="NLP-Wh-uyf" eventType="touchUpInside" id="o3g-UG-etg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.18823529410000001" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="4BH-Sq-ehD" firstAttribute="top" secondItem="jaL-XK-Qft" secondAttribute="top" constant="30" id="1VZ-0W-yQA"/>
                                     <constraint firstAttribute="bottom" secondItem="4BH-Sq-ehD" secondAttribute="bottom" constant="12" id="AZk-fm-okR"/>
-                                    <constraint firstItem="4BH-Sq-ehD" firstAttribute="leading" secondItem="PSb-HI-FTf" secondAttribute="trailing" constant="16" id="B1A-al-uuM"/>
+                                    <constraint firstItem="4BH-Sq-ehD" firstAttribute="leading" secondItem="PSb-HI-FTf" secondAttribute="trailing" constant="-16" id="B1A-al-uuM"/>
                                     <constraint firstItem="kbt-Vo-Ptg" firstAttribute="leading" secondItem="4BH-Sq-ehD" secondAttribute="trailing" constant="22" id="BFc-RP-POd"/>
+                                    <constraint firstAttribute="bottom" secondItem="iNQ-s9-hju" secondAttribute="bottom" constant="6" id="EF1-Vp-LHF"/>
+                                    <constraint firstItem="iNQ-s9-hju" firstAttribute="top" secondItem="jaL-XK-Qft" secondAttribute="top" constant="24" id="Hgu-45-ed1"/>
                                     <constraint firstAttribute="trailing" secondItem="Jft-d8-se8" secondAttribute="trailing" constant="4" id="K3g-MP-pjL"/>
+                                    <constraint firstItem="PSb-HI-FTf" firstAttribute="leading" secondItem="iNQ-s9-hju" secondAttribute="trailing" constant="3" id="LYP-YW-GVz"/>
                                     <constraint firstAttribute="bottom" secondItem="PSb-HI-FTf" secondAttribute="bottom" constant="12" id="Nhm-Sv-VF7"/>
                                     <constraint firstAttribute="height" constant="65" id="UZr-eB-4Gx"/>
                                     <constraint firstItem="PSb-HI-FTf" firstAttribute="top" secondItem="jaL-XK-Qft" secondAttribute="top" constant="30" id="ecx-cH-jM2"/>
-                                    <constraint firstItem="PSb-HI-FTf" firstAttribute="leading" secondItem="jaL-XK-Qft" secondAttribute="leading" constant="8" id="iNm-Ya-9YH"/>
+                                    <constraint firstItem="PSb-HI-FTf" firstAttribute="leading" secondItem="jaL-XK-Qft" secondAttribute="leading" constant="40" id="iNm-Ya-9YH"/>
                                     <constraint firstItem="Jft-d8-se8" firstAttribute="leading" secondItem="kbt-Vo-Ptg" secondAttribute="trailing" constant="15" id="q2m-Q3-Oo8"/>
                                     <constraint firstAttribute="bottom" secondItem="Jft-d8-se8" secondAttribute="bottom" constant="8" id="qef-mm-7dg"/>
                                     <constraint firstAttribute="bottom" secondItem="kbt-Vo-Ptg" secondAttribute="bottom" constant="8" id="y51-93-t9W"/>
+                                    <constraint firstItem="iNQ-s9-hju" firstAttribute="leading" secondItem="jaL-XK-Qft" secondAttribute="leading" constant="2" id="yjl-o6-nRh"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTERTAINMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXz-An-fJO">
@@ -538,12 +567,12 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="218"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5xB-aJ-vl9" id="1dq-vH-6VW">
-                                            <frame key="frameInset" width="375" height="217"/>
+                                            <frame key="frameInset" width="375" height="218"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3Y-4k-dbh">
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="internation_tour.png" translatesAutoresizingMaskIntoConstraints="NO" id="2fs-CM-1UP"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weeklyvoice_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2fs-CM-1UP"/>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wLz-xm-6xQ">
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bollywood can not do away with senior actors: Boman Irani" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE3-ay-VXi">
@@ -581,6 +610,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="K3Y-4k-dbh" secondAttribute="trailing" constant="4" id="yPb-xc-jIt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageview" destination="2fs-CM-1UP" id="DKU-fA-RVt"/>
+                                            <outlet property="lblTitle" destination="GE3-ay-VXi" id="oGJ-Zo-CJo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -600,7 +633,7 @@
                                         <rect key="frame" x="0.0" y="28" width="137" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yfd-D3-fdh" id="2ud-ux-XK6">
-                                            <frame key="frameInset" width="137" height="39"/>
+                                            <frame key="frameInset" width="137" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell Your Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1n-aO-DoC">
@@ -718,7 +751,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSW-ga-uIF">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="internation_tour.png" translatesAutoresizingMaskIntoConstraints="NO" id="W0w-ij-7lL"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weeklyvoice_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="W0w-ij-7lL"/>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kwp-sm-3H6">
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7M-8s-VPT">
@@ -1228,8 +1261,8 @@
     <resources>
         <image name="back.png" width="47" height="47"/>
         <image name="comment.png" width="128" height="128"/>
+        <image name="default_icon.png" width="128" height="128"/>
         <image name="ic_menu.png" width="48" height="48"/>
-        <image name="internation_tour.png" width="274" height="137"/>
         <image name="line.png" width="738" height="3"/>
         <image name="new_logo_1.png" width="426" height="59"/>
         <image name="share.png" width="32" height="32"/>

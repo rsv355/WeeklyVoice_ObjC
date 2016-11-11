@@ -7,7 +7,6 @@
 //
 
 #import "HomePageVC.h"
-
 @interface HomePageVC ()<UICollectionViewDataSource,UICollectionViewDelegate,UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate>
 {
     int index;
@@ -192,11 +191,18 @@
 }
 
 #pragma mark - Navigationbar Button Action
+- (IBAction)AppLogoBtnTap:(id)sender {
+    [self.rootNav drawerToggle];
+   
+}
+
 - (IBAction)leftMenuBtnTap:(id)sender {
-    
     [self.rootNav drawerToggle];
 
 }
+
+
+
 - (IBAction)btnDropdownTap:(id)sender {
     
     if(_btnDropdown.selected == false)
@@ -221,15 +227,20 @@
 
 #pragma mark- CCKFNavDrawer Selection Section Method
 
--(void)CCKFNavDrawerSelection:(NSString *)selectedIndexString
+-(void)CCKFNavDrawerSelection:(NSString *)selectedIndexString :(NSString *)categoryId
 {
 //    NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
 //    self.selectionIdx.text = [NSString stringWithFormat:@"%i",selectionIndex];
     
+    NSLog(@"Category Id:- %@",categoryId);
     NSLog(@"DrawerSelected String:- %@",selectedIndexString);
+    
+    
+     [[NSUserDefaults standardUserDefaults]setValue:@"YES" forKey:@"SUBCAT"];
     
     [[NSUserDefaults standardUserDefaults]setValue:selectedIndexString forKey:@"catTitle"];
     
+    [[NSUserDefaults standardUserDefaults]setObject:categoryId forKey:@"categoryId"];
 
 }
 
@@ -246,10 +257,9 @@
 {
     HeadlinesVcCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSURL *imageURL = [NSURL URLWithString:[headlinesImageArray objectAtIndex:indexPath.row]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *image = [UIImage imageWithData:imageData];
-    cell.imageViewCategory.image = image;
+  
+    NSString *strImagePath  = [NSString stringWithFormat:@"%@",[headlinesImageArray objectAtIndex:indexPath.row]];
+    [cell.imageViewCategory setImageWithURL:[NSURL URLWithString:strImagePath]];
     
     cell.lblCategoryName.text = [headlinesNameArray objectAtIndex:indexPath.row];
     [cell.lblCategoryName setBackgroundColor:[colorArray objectAtIndex:indexPath.row]];
@@ -308,10 +318,8 @@
     {
         RightnowVcCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         
-        NSURL *imageURL = [NSURL URLWithString:[rightNowImageArray objectAtIndex:indexPath.row]];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage *image = [UIImage imageWithData:imageData];
-        cell.imageviewRightNow.image = image;
+        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[rightNowImageArray objectAtIndex:indexPath.row]];
+        [cell.imageviewRightNow setImageWithURL:[NSURL URLWithString:strImagePath]];
 
         cell.lblTitleRightNow.text = [rightNowTitleArray objectAtIndex:indexPath.row];
         cell.lblDateRightNow.text = [rightNowDateArray objectAtIndex: indexPath.row];

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EntertainmentVcCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *imageview;
+@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end

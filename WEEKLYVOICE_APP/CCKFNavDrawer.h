@@ -14,13 +14,20 @@
 
 @protocol CCKFNavDrawerDelegate <NSObject>
 @required
-- (void)CCKFNavDrawerSelection:(NSString *)selectedIndexString;
+- (void)CCKFNavDrawerSelection:(NSString *)selectedIndexString :(NSString *)categoryId;
 
 @end
 
 @interface CCKFNavDrawer : UINavigationController<UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate>
 
+{
+
+//    UIButton *categoryTitleButton;
+    UILabel *categoryTitleLabel;
+}
+
 @property (nonatomic, strong) NSString *selectedString;
+@property (nonatomic, strong) NSString *categoryId;
 @property (nonatomic, strong) NSString *selectedSubCategoryString;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan_gr;
 

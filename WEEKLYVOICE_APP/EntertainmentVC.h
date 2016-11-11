@@ -16,7 +16,7 @@
 
 @protocol EntertainmentVcDelegate <NSObject>
 @optional
--(void)RefreshTableviewData:(NSString *)strSelected;
+-(void)RefreshTableviewData:(NSString *)strSelected :(NSString *)categoryID;
 
 @end
 
@@ -26,6 +26,7 @@
 @property (weak, nonatomic)id<EntertainmentVcDelegate> EntertainmentVcDelegate;
 
 @property (strong, nonatomic) NSString *passedString;
+@property (strong, nonatomic) NSString *passCategoryId;
 @property (strong, nonatomic) NSString *passedSubCategoryTitle;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblName;

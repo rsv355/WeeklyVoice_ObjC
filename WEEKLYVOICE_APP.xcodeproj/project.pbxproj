@@ -40,6 +40,7 @@
 		9633E6641DD0803200C27723 /* EntertainmentVcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9633E6631DD0803200C27723 /* EntertainmentVcCell.m */; };
 		9633E6661DD084F500C27723 /* internation_tour.png in Resources */ = {isa = PBXBuildFile; fileRef = 9633E6651DD084F500C27723 /* internation_tour.png */; };
 		9633E67E1DD0A4F700C27723 /* UIViewController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9633E67D1DD0A4F700C27723 /* UIViewController+Transition.m */; };
+		966469E71DD5C9E000C51427 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 966469E51DD5C9E000C51427 /* UIImageView+AFNetworking.m */; };
 		96E15A831DD47423000D5ACA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A711DD47423000D5ACA /* AFHTTPRequestOperation.m */; };
 		96E15A841DD47423000D5ACA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A731DD47423000D5ACA /* AFHTTPRequestOperationManager.m */; };
 		96E15A851DD47423000D5ACA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A751DD47423000D5ACA /* AFHTTPSessionManager.m */; };
@@ -104,6 +105,9 @@
 		9633E6651DD084F500C27723 /* internation_tour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = internation_tour.png; sourceTree = "<group>"; };
 		9633E67C1DD0A4F700C27723 /* UIViewController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transition.h"; sourceTree = "<group>"; };
 		9633E67D1DD0A4F700C27723 /* UIViewController+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transition.m"; sourceTree = "<group>"; };
+		966469E41DD5C9E000C51427 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		966469E51DD5C9E000C51427 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		966469E61DD5C9E000C51427 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		96E15A6E1DD4722F000D5ACA /* WEEKLYVOICEURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WEEKLYVOICEURL.h; sourceTree = "<group>"; };
 		96E15A701DD47423000D5ACA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		96E15A711DD47423000D5ACA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 		9633E66C1DD09C8600C27723 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				966469E31DD5C9C500C51427 /* UIKit+AFNetwoking */,
 				96E322EC1DD4B5650072BAE7 /* MBProgressHUD */,
 				96E15A6F1DD473E4000D5ACA /* AFNetworking */,
 				9623DFCC1DD34C3F0098C4D5 /* CustomAnimation+Transition */,
@@ -269,6 +274,16 @@
 				9633E67D1DD0A4F700C27723 /* UIViewController+Transition.m */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		966469E31DD5C9C500C51427 /* UIKit+AFNetwoking */ = {
+			isa = PBXGroup;
+			children = (
+				966469E41DD5C9E000C51427 /* UIImageView+AFNetworking.h */,
+				966469E51DD5C9E000C51427 /* UIImageView+AFNetworking.m */,
+				966469E61DD5C9E000C51427 /* UIKit+AFNetworking.h */,
+			);
+			name = "UIKit+AFNetwoking";
 			sourceTree = "<group>";
 		};
 		96E15A6F1DD473E4000D5ACA /* AFNetworking */ = {
@@ -409,6 +424,7 @@
 				96E15A881DD47423000D5ACA /* AFURLConnectionOperation.m in Sources */,
 				96E15A891DD47423000D5ACA /* AFURLRequestSerialization.m in Sources */,
 				96E15A8B1DD47423000D5ACA /* AFURLSessionManager.m in Sources */,
+				966469E71DD5C9E000C51427 /* UIImageView+AFNetworking.m in Sources */,
 				96E15A8A1DD47423000D5ACA /* AFURLResponseSerialization.m in Sources */,
 				9623DFCB1DD349100098C4D5 /* FacebookVC.m in Sources */,
 				9633E6611DD0801100C27723 /* DescriptionVC.m in Sources */,

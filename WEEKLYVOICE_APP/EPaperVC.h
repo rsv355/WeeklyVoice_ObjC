@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPaperVC : UIViewController
+@interface EPaperVC : UIViewController <UIWebViewDelegate>
+{
+    NSString * Url;
+
+}
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+
+@property(strong,atomic) NSString * videoUrl;
+@property(strong,atomic) NSString * viewID;
 
 @end

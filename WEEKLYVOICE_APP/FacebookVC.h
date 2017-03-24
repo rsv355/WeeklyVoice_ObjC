@@ -11,6 +11,16 @@
 
 @interface FacebookVC : UIViewController
 
+@property (strong, nonatomic) NSString *strVideoID;
+@property (strong, nonatomic) NSString *strVideoURL;
+@property (strong, nonatomic) NSString *strVideoTitle;
+
+
+
+
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
+
+
 
 @end

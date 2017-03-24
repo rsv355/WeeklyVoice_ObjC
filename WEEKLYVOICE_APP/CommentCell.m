@@ -1,14 +1,14 @@
 //
-//  HomepageDropdownCell.m
+//  CommentCell.m
 //  WEEKLYVOICE_APP
 //
-//  Created by Jenish Mistry on 09/11/16.
+//  Created by Jenish Mistry on 14/11/16.
 //  Copyright © 2016 Jenish Mistry. All rights reserved.
 //
 
-#import "HomepageDropdownCell.h"
+#import "CommentCell.h"
 
-@implementation HomepageDropdownCell
+@implementation CommentCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

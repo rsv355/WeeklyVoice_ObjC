@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DescriptionVC.h"
 
 @interface AddCommentVC : UIViewController
 
+
+@property (strong, nonatomic) NSString *passNIDString;
+
 @property (strong, nonatomic) IBOutlet UITextField *txtName;
 @property (strong, nonatomic) IBOutlet UITextField *txtComment;
+
 @property (strong, nonatomic) IBOutlet UIView *backView;
 
 @end

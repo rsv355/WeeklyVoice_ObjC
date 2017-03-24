@@ -40,7 +40,15 @@
 		9633E6641DD0803200C27723 /* EntertainmentVcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9633E6631DD0803200C27723 /* EntertainmentVcCell.m */; };
 		9633E6661DD084F500C27723 /* internation_tour.png in Resources */ = {isa = PBXBuildFile; fileRef = 9633E6651DD084F500C27723 /* internation_tour.png */; };
 		9633E67E1DD0A4F700C27723 /* UIViewController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9633E67D1DD0A4F700C27723 /* UIViewController+Transition.m */; };
+		963FFF711DD985F7004E7D69 /* weeklyvoice_new_logo_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FFF701DD985F7004E7D69 /* weeklyvoice_new_logo_3.png */; };
+		963FFF731DD987C6004E7D69 /* menu-three.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FFF721DD987C6004E7D69 /* menu-three.png */; };
+		963FFF751DD988C5004E7D69 /* show-more.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FFF741DD988C5004E7D69 /* show-more.png */; };
+		963FFF781DD99625004E7D69 /* VideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 963FFF771DD99625004E7D69 /* VideoVC.m */; };
+		963FFF7B1DD9962E004E7D69 /* VideoVCcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 963FFF7A1DD9962E004E7D69 /* VideoVCcell.m */; };
+		963FFF7D1DD9D7DA004E7D69 /* menu-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FFF7C1DD9D7DA004E7D69 /* menu-button.png */; };
+		963FFF801DD9E1BB004E7D69 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 963FFF7F1DD9E1BB004E7D69 /* CommentCell.m */; };
 		966469E71DD5C9E000C51427 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 966469E51DD5C9E000C51427 /* UIImageView+AFNetworking.m */; };
+		96975C211DDC325700F9403C /* icon_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 96975C201DDC325700F9403C /* icon_video.png */; };
 		96E15A831DD47423000D5ACA /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A711DD47423000D5ACA /* AFHTTPRequestOperation.m */; };
 		96E15A841DD47423000D5ACA /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A731DD47423000D5ACA /* AFHTTPRequestOperationManager.m */; };
 		96E15A851DD47423000D5ACA /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E15A751DD47423000D5ACA /* AFHTTPSessionManager.m */; };
@@ -105,9 +113,20 @@
 		9633E6651DD084F500C27723 /* internation_tour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = internation_tour.png; sourceTree = "<group>"; };
 		9633E67C1DD0A4F700C27723 /* UIViewController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transition.h"; sourceTree = "<group>"; };
 		9633E67D1DD0A4F700C27723 /* UIViewController+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transition.m"; sourceTree = "<group>"; };
+		963FFF701DD985F7004E7D69 /* weeklyvoice_new_logo_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weeklyvoice_new_logo_3.png; sourceTree = "<group>"; };
+		963FFF721DD987C6004E7D69 /* menu-three.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-three.png"; sourceTree = "<group>"; };
+		963FFF741DD988C5004E7D69 /* show-more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show-more.png"; sourceTree = "<group>"; };
+		963FFF761DD99625004E7D69 /* VideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoVC.h; sourceTree = "<group>"; };
+		963FFF771DD99625004E7D69 /* VideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoVC.m; sourceTree = "<group>"; };
+		963FFF791DD9962E004E7D69 /* VideoVCcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoVCcell.h; sourceTree = "<group>"; };
+		963FFF7A1DD9962E004E7D69 /* VideoVCcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoVCcell.m; sourceTree = "<group>"; };
+		963FFF7C1DD9D7DA004E7D69 /* menu-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-button.png"; sourceTree = "<group>"; };
+		963FFF7E1DD9E1BB004E7D69 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		963FFF7F1DD9E1BB004E7D69 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		966469E41DD5C9E000C51427 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		966469E51DD5C9E000C51427 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		966469E61DD5C9E000C51427 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		96975C201DDC325700F9403C /* icon_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_video.png; sourceTree = "<group>"; };
 		96E15A6E1DD4722F000D5ACA /* WEEKLYVOICEURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WEEKLYVOICEURL.h; sourceTree = "<group>"; };
 		96E15A701DD47423000D5ACA /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		96E15A711DD47423000D5ACA /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -211,10 +230,15 @@
 		9633E6371DD0571400C27723 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				96975C201DDC325700F9403C /* icon_video.png */,
+				963FFF7C1DD9D7DA004E7D69 /* menu-button.png */,
 				9633E63A1DD05ACB00C27723 /* back.png */,
+				963FFF741DD988C5004E7D69 /* show-more.png */,
+				963FFF721DD987C6004E7D69 /* menu-three.png */,
 				9633E63B1DD05ACB00C27723 /* comment.png */,
 				9633E63C1DD05ACB00C27723 /* ic_menu.png */,
 				9633E63D1DD05ACB00C27723 /* line.png */,
+				963FFF701DD985F7004E7D69 /* weeklyvoice_new_logo_3.png */,
 				9633E63E1DD05ACB00C27723 /* new_logo_1.png */,
 				9633E63F1DD05ACB00C27723 /* share.png */,
 				9633E6401DD05ACB00C27723 /* top_news.png */,
@@ -239,6 +263,8 @@
 				9623DFC71DD343A90098C4D5 /* EPaperVC.m */,
 				9623DFC91DD349100098C4D5 /* FacebookVC.h */,
 				9623DFCA1DD349100098C4D5 /* FacebookVC.m */,
+				963FFF761DD99625004E7D69 /* VideoVC.h */,
+				963FFF771DD99625004E7D69 /* VideoVC.m */,
 				9623DFD01DD34CA50098C4D5 /* AddCommentVC.h */,
 				9623DFD11DD34CA50098C4D5 /* AddCommentVC.m */,
 			);
@@ -248,6 +274,8 @@
 		9633E6551DD0635100C27723 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				963FFF791DD9962E004E7D69 /* VideoVCcell.h */,
+				963FFF7A1DD9962E004E7D69 /* VideoVCcell.m */,
 				9633E6561DD0637100C27723 /* HeadlinesVcCell.h */,
 				9633E6571DD0637100C27723 /* HeadlinesVcCell.m */,
 				9633E6591DD0638A00C27723 /* RightnowVcCell.h */,
@@ -258,6 +286,8 @@
 				9623DFC11DD2FBDF0098C4D5 /* DropdownTableViewCell.m */,
 				9623DFC31DD303740098C4D5 /* HomepageDropdownCell.h */,
 				9623DFC41DD303740098C4D5 /* HomepageDropdownCell.m */,
+				963FFF7E1DD9E1BB004E7D69 /* CommentCell.h */,
+				963FFF7F1DD9E1BB004E7D69 /* CommentCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -381,9 +411,12 @@
 			files = (
 				9633E64A1DD05ACB00C27723 /* top_news.png in Resources */,
 				9633E6391DD0572000C27723 /* default_icon.png in Resources */,
+				963FFF711DD985F7004E7D69 /* weeklyvoice_new_logo_3.png in Resources */,
+				963FFF731DD987C6004E7D69 /* menu-three.png in Resources */,
 				9633E6461DD05ACB00C27723 /* ic_menu.png in Resources */,
 				9633E6451DD05ACB00C27723 /* comment.png in Resources */,
 				9633E6471DD05ACB00C27723 /* line.png in Resources */,
+				963FFF751DD988C5004E7D69 /* show-more.png in Resources */,
 				9633E6441DD05ACB00C27723 /* back.png in Resources */,
 				9633E62D1DD0533300C27723 /* LaunchScreen.storyboard in Resources */,
 				9633E64C1DD05ACB00C27723 /* weeklyvoice_logo.png in Resources */,
@@ -392,9 +425,11 @@
 				9633E64D1DD05ACB00C27723 /* wv_logonew.png in Resources */,
 				9633E6491DD05ACB00C27723 /* share.png in Resources */,
 				9633E6661DD084F500C27723 /* internation_tour.png in Resources */,
+				963FFF7D1DD9D7DA004E7D69 /* menu-button.png in Resources */,
 				9633E6481DD05ACB00C27723 /* new_logo_1.png in Resources */,
 				9633E6281DD0533300C27723 /* Main.storyboard in Resources */,
 				962837AF1DD1B16B00F7F328 /* DrawerView.xib in Resources */,
+				96975C211DDC325700F9403C /* icon_video.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,11 +457,14 @@
 				9633E6361DD0542E00C27723 /* HomePageVC.m in Sources */,
 				962837B01DD1B16B00F7F328 /* DrawerView.m in Sources */,
 				96E15A881DD47423000D5ACA /* AFURLConnectionOperation.m in Sources */,
+				963FFF801DD9E1BB004E7D69 /* CommentCell.m in Sources */,
 				96E15A891DD47423000D5ACA /* AFURLRequestSerialization.m in Sources */,
+				963FFF7B1DD9962E004E7D69 /* VideoVCcell.m in Sources */,
 				96E15A8B1DD47423000D5ACA /* AFURLSessionManager.m in Sources */,
 				966469E71DD5C9E000C51427 /* UIImageView+AFNetworking.m in Sources */,
 				96E15A8A1DD47423000D5ACA /* AFURLResponseSerialization.m in Sources */,
 				9623DFCB1DD349100098C4D5 /* FacebookVC.m in Sources */,
+				963FFF781DD99625004E7D69 /* VideoVC.m in Sources */,
 				9633E6611DD0801100C27723 /* DescriptionVC.m in Sources */,
 				9623DFC51DD303740098C4D5 /* HomepageDropdownCell.m in Sources */,
 				9633E65B1DD0638A00C27723 /* RightnowVcCell.m in Sources */,
@@ -551,6 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WEEKLYVOICE_APP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "webmyne.WEEKLYVOICE-APP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -562,6 +601,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WEEKLYVOICE_APP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "webmyne.WEEKLYVOICE-APP";
 				PRODUCT_NAME = "$(TARGET_NAME)";

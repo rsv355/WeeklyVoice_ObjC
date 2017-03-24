@@ -27,6 +27,18 @@
 
 #define FETCH_BREAKING_NEWS @"/breakingnews.php?format=json"
 
+#define FETCH_NEWS_DETAIL @"/newsdetail.php?format=json&"
+
+#define FETCH_EPAPEER @"/epaper.php?format=json"
+
+#define FETCH_YOUTUBE_VIDEO @"/latestvedio.php?format=json"
+
+#define ADD_COMMENT @"/comment_add.php?format=json"
+
+#define FETCH_COMMENT @"/comment_list.php?format=json"
+
+#define FETCH_CATEGORY_COVER_NEWS @"/category_cover_news.php?format=json"
+
 
 
 

@@ -45,6 +45,65 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)btnOkTap:(id)sender {
+
+    
+    if ( [_txtName.text length] == 0 && [_txtComment.text length] == 0) {
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please enter all fields.." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        [errorAlert show];
+        return;
+    }
+    else
+    {
+        [self AddCommentWebService];
+    }
+}
+
+-(void)AddCommentWebService
+{
+    
+    [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *stringURL = [NSString stringWithFormat:@"%@%@",BASE_URL,ADD_COMMENT];
+
+    
+    NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:_passNIDString,@"nid",_txtComment.text,@"subject",_txtName.text,@"name", nil] ;
+    
+    [manager POST:stringURL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        
+        NSDictionary *responseArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+        [self parseDataResponseObject:responseArr];
+        
+        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Network error. Please try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [errorAlert show];
+        
+    }];
+    
+}
+
+
+-(void)parseDataResponseObject:(NSDictionary *)dictionary{
+    
+    
+    NSString *stringMessage = [dictionary valueForKey:@"code"];
+    
+    UIAlertView *successAlert = [[UIAlertView alloc]initWithTitle:@"Success" message:stringMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    [successAlert show];
+    
 }
 
 

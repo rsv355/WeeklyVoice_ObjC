@@ -42,8 +42,13 @@
 @property (strong, nonatomic) IBOutlet UIView *viewNavigationBar;
 
 
-
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *dropdownTableviewHeightConstraint;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imageviewTopTitle;
+@property (strong, nonatomic) IBOutlet UILabel *labelTopTitle;
+
+
+
 
 
 @end

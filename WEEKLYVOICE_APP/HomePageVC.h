@@ -17,6 +17,7 @@
 #import "EntertainmentVC.h"
 #import "EPaperVC.h"
 #import "FacebookVC.h"
+#import "VideoVC.h"
 
 #import "WEEKLYVOICEURL.h"
 #import "AFNetworking.h"
@@ -28,17 +29,7 @@
 
 @interface HomePageVC : UIViewController<CCKFNavDrawerDelegate>
 {
-    
-    NSMutableArray *colorArray;
-    
-    NSMutableArray *topNewsImageArray, *topNewsLabelArray;
-    
-    NSMutableArray *rightNowImageArray, *rightNowTitleArray, *rightNowDateArray, *rightNowDescriptionArray ;
-    
-    NSMutableArray *headlinesNameArray, *headlinesImageArray, *headlinesDescriptionArray;
-    
-    NSMutableArray *breakingNewsTitleArray;
-
+    NSMutableArray *colorArray, *topNewsArray, *headlinesArray, *rightNowArray, *breakingNewsTitleArray;
 }
 
 

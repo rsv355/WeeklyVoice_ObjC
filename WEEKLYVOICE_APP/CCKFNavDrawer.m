@@ -57,31 +57,15 @@
     [self setUpDrawer];
     
     [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_CATEGORY] for:1];
- 
     
-    categoryTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, _drawerView.drawerTableView.frame.size.width, 40)];
-    categoryTitleLabel.text = @"Title";
-    categoryTitleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [self createTitleLabel];
     
-    categoryTitleLabel.backgroundColor = [UIColor colorWithRed:152.0/255.0 green:152.0/255.0 blue:152.0/255.0 alpha:1.0];
-    
-    categoryTitleLabel.textColor = [UIColor whiteColor];
-    
-    categoryTitleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    _drawerView.drawerTableView.tableHeaderView = categoryTitleLabel;
-    
-    categoryTitleLabel.hidden = YES;
-    
+ // UITapGesture
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-    
     tapGesture.numberOfTapsRequired = 1;
-    
     [categoryTitleLabel addGestureRecognizer:tapGesture];
-    
     [categoryTitleLabel setUserInteractionEnabled:YES];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,6 +91,29 @@
     [self closeNavigationDrawer];
 
 }
+
+
+#pragma mark - Creating Title Label
+
+-(void)createTitleLabel
+{
+ 
+    
+    categoryTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, _drawerView.drawerTableView.frame.size.width, 0)];
+    categoryTitleLabel.text = @"Title";
+    categoryTitleLabel.font = [UIFont boldSystemFontOfSize:15];
+    
+    categoryTitleLabel.backgroundColor = [UIColor colorWithRed:152.0/255.0 green:152.0/255.0 blue:152.0/255.0 alpha:1.0];
+    categoryTitleLabel.textColor = [UIColor whiteColor];
+    categoryTitleLabel.textAlignment = NSTextAlignmentCenter;
+    _drawerView.drawerTableView.tableHeaderView = categoryTitleLabel;
+    categoryTitleLabel.hidden = YES;
+    
+    
+    _drawerView.drawerTableView.contentInset = UIEdgeInsetsMake(27.0f, 0.0f, 0.0f, 0.0);
+
+}
+
 
 #pragma mark - Fetch & Parse Data From WEBSERVICE
 
@@ -148,9 +155,9 @@
         categoryNameArray = [categoryArray valueForKey:@"cat_name"];
         categoryIdArray = [categoryArray valueForKey:@"tid"];
         
-        _drawerView.drawerTableView.reloadData;
+        [_drawerView.drawerTableView reloadData];
         
-        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+        
 
     }
     
@@ -159,11 +166,12 @@
         categoryNameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"cat_name"];
         categoryIdArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"tid"];
         
-        _drawerView.drawerTableView.reloadData;
+        [_drawerView.drawerTableView reloadData];
 
         
     }
-
+    
+ [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
     
 }
 
@@ -196,6 +204,10 @@
     
     // load drawer view
     self.drawerView = [[[NSBundle mainBundle] loadNibNamed:@"DrawerView" owner:self options:nil] objectAtIndex:0];
+    
+    CGRect frame = [_drawerView frame];
+    frame.size.height = self.view.frame.size.height;
+    [_drawerView setFrame:frame];
     
     self.meunHeight = self.drawerView.frame.size.height;
     self.menuWidth = self.drawerView.frame.size.width;
@@ -368,11 +380,13 @@
     NSString *value = [[NSUserDefaults standardUserDefaults]valueForKey:@"SUBCAT"];
     
     if ([value isEqualToString:@"YES"]) {
-        categoryTitleLabel.hidden = NO;
         
+        [categoryTitleLabel setFrame:CGRectMake(0, 0, _drawerView.drawerTableView.frame.size.width, 40)];
+        categoryTitleLabel.hidden = NO;
         categoryTitleLabel.text = [[NSUserDefaults standardUserDefaults]valueForKey:@"catTitle"];
     } else
     {
+        [categoryTitleLabel setFrame:CGRectMake(0, 0, _drawerView.drawerTableView.frame.size.width, 0)];
         categoryTitleLabel.hidden = YES;
     }
     
@@ -384,6 +398,7 @@
 }
 
 #pragma mark - Table view data source
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -417,7 +432,10 @@
     return cell;
 }
 
+
+
 #pragma mark - Table view delegate
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -438,11 +456,7 @@
     vc.passCategoryId = [categoryIdArray objectAtIndex:indexPath.row];
     
     [self pushViewController:vc animated:YES];
-    
-
-    
-
-    
+  
 }
 
 @end

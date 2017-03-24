@@ -52,10 +52,15 @@
     
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"subcatTitle"];
    
-    [self setAnim];
+    [self setColorArray];
     
+   
     
     [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_TOP_NEWS] for:1];
+    
+    
+    
+
     
 }
 
@@ -67,12 +72,23 @@
 -(void)FetchImageFromURL
 {
 
-    if(index != topNewsImageArray.count-1)
+    if(index != topNewsArray.count-1)
     {
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:topNewsImageArray[index]]];
-        _imageTopNews.image = [UIImage imageWithData:imageData];
+//        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:topNewsImageArray[index]]];
+//        
+//        _imageTopNews.image = [UIImage imageWithData:imageData];
         
-       _lblTopNewsTitle.text = [topNewsLabelArray objectAtIndex:index];
+        
+        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[topNewsArray valueForKey:@"image"][index]];
+        [_imageTopNews setImageWithURL:[NSURL URLWithString:strImagePath]];
+        
+        _lblTopNewsTitle.text = [[topNewsArray valueForKey:@"title"]objectAtIndex:index];
+        
+        
+        DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
+        
+        vc.stringNID = [[topNewsArray valueForKey:@"nid"]objectAtIndex:index];
+        
         index++;
     }
     else
@@ -84,7 +100,10 @@
 -(void)fetchDataFromWebService:(NSString *)stringURL for:(NSInteger)selectInteger
 {
     
-    [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+    
+     [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+    
+
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -110,20 +129,15 @@
 -(void)parseDataResponseObject:(NSDictionary *)dictionary for:(NSInteger)selectInteger {
     
     if (selectInteger == 1) {
-
-        topNewsImageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
-        topNewsLabelArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
         
+        topNewsArray = [[dictionary objectForKey:@"posts"]valueForKey:@"post"];
         [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_RIGHT_NOW] for:3];
     }
     
     
     else if (selectInteger == 2){
 
-        headlinesNameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"name"];
-        headlinesImageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
-        headlinesDescriptionArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
-        
+        headlinesArray = [[dictionary objectForKey:@"posts"]valueForKey:@"post"];
         [_collectionView reloadData];
         
         [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@",BASE_URL,FETCH_BREAKING_NEWS] for:4];
@@ -133,10 +147,9 @@
     
     else if (selectInteger == 3){
 
-        rightNowImageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
-        rightNowTitleArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"taxonomy_term_data_name"];
-        rightNowDateArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"field_category_taxonomy_term_data_created"];
-        rightNowDescriptionArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"field_category_taxonomy_term_data_title"];
+        rightNowArray = [[dictionary objectForKey:@"posts"]valueForKey:@"post"];
+
+        _tableviewHeightConstraint.constant = (rightNowArray.count)*99;
         
         [_tableView reloadData];
         
@@ -148,12 +161,10 @@
  
         breakingNewsTitleArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
         
-        NSLog(@"Breaking News Title:- %@",breakingNewsTitleArray);
+//        NSLog(@"Breaking News Title:- %@",breakingNewsTitleArray);
         
     }
     
-//    [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
-
     
 }
 
@@ -169,21 +180,22 @@
     
     DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
     
+    if (index == 0) {
+        vc.stringNID = [[topNewsArray valueForKey:@"nid"]objectAtIndex:index];
+    } else{
+        vc.stringNID = [[topNewsArray valueForKey:@"nid"]objectAtIndex:index-1];
+    }
+    
+    
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 
--(void)setAnim
+-(void)setColorArray
 {
     
-    
-    NSArray *arrCount = [[NSArray alloc]initWithObjects:@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1", nil];
-    
-    self.tableviewHeightConstraint.constant = ((arrCount.count) * 99);
-    
-
-    
-    
+  
     colorArray = [[NSMutableArray alloc]initWithObjects:[UIColor colorWithRed:128.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0],[UIColor colorWithRed:185.0/255.0 green:95.0/255.0 blue:0.0/255.0 alpha:1.0],[UIColor colorWithRed:0.0/255.0 green:90.0/255.0 blue:186.0/255.0 alpha:1.0],[UIColor colorWithRed:0.0/255.0 green:128.0/255.0 blue:64.0/255.0 alpha:1.0],[UIColor colorWithRed:199.0/255.0 green:163.0/255.0 blue:23.0/255.0 alpha:1.0],[UIColor colorWithRed:205.0/255.0 green:0.0/255.0 blue:205.0/255.0 alpha:1.0], nil];
     
     
@@ -218,8 +230,7 @@
 }
 - (IBAction)btnVideoTap:(id)sender {
     
-    EntertainmentVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EntertainmentVC"];
-    vc.passedString = @"Videos";
+    VideoVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoVC"];
     [self.navigationController pushViewController:vc animated:YES];
 
 }
@@ -250,7 +261,12 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return headlinesNameArray.count;
+    
+    if (headlinesArray.count == 0) {
+         self.collectionviewHeightConstraint.constant = 5;
+    }
+    return headlinesArray.count;
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -258,12 +274,12 @@
     HeadlinesVcCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
   
-    NSString *strImagePath  = [NSString stringWithFormat:@"%@",[headlinesImageArray objectAtIndex:indexPath.row]];
+    NSString *strImagePath  = [NSString stringWithFormat:@"%@",[[headlinesArray valueForKey:@"image"]objectAtIndex:indexPath.row]];
     [cell.imageViewCategory setImageWithURL:[NSURL URLWithString:strImagePath]];
     
-    cell.lblCategoryName.text = [headlinesNameArray objectAtIndex:indexPath.row];
+    cell.lblCategoryName.text = [[headlinesArray valueForKey:@"name"]objectAtIndex:indexPath.row];
     [cell.lblCategoryName setBackgroundColor:[colorArray objectAtIndex:indexPath.row]];
-    cell.lblCategoryDescription.text = [headlinesDescriptionArray objectAtIndex: indexPath.row];
+    cell.lblCategoryDescription.text = [[headlinesArray valueForKey:@"title"]objectAtIndex:indexPath.row];
    
     
     return cell;
@@ -272,6 +288,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
+    vc.stringNID = [[headlinesArray valueForKey:@"nid"]objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -298,8 +315,9 @@
     }
     else
     {
+    
+        return rightNowArray.count;
         
-        return rightNowTitleArray.count;
     }
 }
 
@@ -318,12 +336,12 @@
     {
         RightnowVcCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         
-        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[rightNowImageArray objectAtIndex:indexPath.row]];
+        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[[rightNowArray valueForKey:@"image"]objectAtIndex:indexPath.row]];
         [cell.imageviewRightNow setImageWithURL:[NSURL URLWithString:strImagePath]];
 
-        cell.lblTitleRightNow.text = [rightNowTitleArray objectAtIndex:indexPath.row];
-        cell.lblDateRightNow.text = [rightNowDateArray objectAtIndex: indexPath.row];
-        cell.lblDescriptionRightNow.text = [rightNowDescriptionArray objectAtIndex:indexPath.row];
+        cell.lblTitleRightNow.text = [[rightNowArray valueForKey:@"taxonomy_term_data_name"]objectAtIndex:indexPath.row];
+        cell.lblDateRightNow.text = [[rightNowArray valueForKey:@"field_category_taxonomy_term_data_created"]objectAtIndex:indexPath.row];
+        cell.lblDescriptionRightNow.text = [[rightNowArray valueForKey:@"field_category_taxonomy_term_data_title"]objectAtIndex:indexPath.row];
     
         return  cell;
     }
@@ -357,7 +375,8 @@
             NSLog(@"E-Paper");
             
             EPaperVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EPaperVC"];
-           
+            vc.viewID=@"homeVC";
+
 
             [self.navigationController pushViewController:vc animated:YES];
             
@@ -380,6 +399,8 @@
     if (tableView == self.tableView)
     {
         DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
+        
+        vc.stringNID = [[rightNowArray valueForKey:@"nid"]objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
     
@@ -388,5 +409,43 @@
     
 }
 
+//-(void)FatchEpaperUrl:(NSString*)Epaper_url
+//{
+//    
+//    [MBProgressHUD showHUDAddedTo: self.view animated:YES];
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    
+//    [manager GET:Epaper_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+//       
+//        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+//        
+//        NSDictionary *responseArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+//        
+//        [self Parse_Epaper:responseArr];
+//       
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
+//        
+//        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Network error. Please try again later" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        
+//        [errorAlert show];
+//        
+//    }];
+//    
+//    
+//}
+//
+//-(void)Parse_Epaper:(NSDictionary *)dictionary
+//{
+//    NSMutableArray * posts_dictionary=[dictionary valueForKey:@"posts"];
+//    NSMutableDictionary * post_dictionary=[posts_dictionary objectAtIndex:0];
+//    NSMutableDictionary * post_url=[post_dictionary valueForKey:@"post"];
+//    NSString * Url=[post_url valueForKey:@"URL"];
+//}
+//
 
 @end

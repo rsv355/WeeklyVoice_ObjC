@@ -20,7 +20,10 @@
 @implementation EntertainmentVC
 {
     NSArray *dropdownNameArray;
-    NSMutableArray *imageArray, *nameArray;
+    NSMutableArray *imageArray, *nameArray, *NIDArray, *coverNewsArray;
+    
+    NSString *strNID;
+
     
 }
 
@@ -60,7 +63,7 @@
     
     [self setCustomButton];
     
-    [self fetchDataFromWebService];
+    [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@%@",BASE_URL,FETCH_CATEGORY_NEWS,_passCategoryId] for:1];
     
     
 }
@@ -111,18 +114,18 @@
 
 
 #pragma mark - Fetch Data From WebService
--(void)fetchDataFromWebService
+-(void)fetchDataFromWebService:(NSString *)stringURL for:(NSInteger)selectInteger
 {
     [MBProgressHUD showHUDAddedTo: self.view animated:YES];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager GET:[NSString stringWithFormat:@"%@%@%@",BASE_URL,FETCH_CATEGORY_NEWS,_passCategoryId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [manager GET:stringURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         NSDictionary *responseArr = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
         
-        [self parseDataResponseObject:responseArr];
+        [self parseDataResponseObject:responseArr for:selectInteger];
         [MBProgressHUD hideAllHUDsForView: self.view animated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -138,14 +141,38 @@
     
 }
 
--(void)parseDataResponseObject:(NSDictionary *)dictionary
+-(void)parseDataResponseObject:(NSDictionary *)dictionary for:(NSInteger)selectInteger
 {
     
-    imageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
+    if (selectInteger == 1) {
+        imageArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"image"];
+        
+        nameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
+        
+        NIDArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"nid"];
+        
+        [_tableView reloadData];
+        
+        [self fetchDataFromWebService:[NSString stringWithFormat:@"%@%@&cat_id=%@",BASE_URL,FETCH_CATEGORY_COVER_NEWS,_passCategoryId] for:2];
+    }
     
-    nameArray = [[[dictionary objectForKey:@"posts"]valueForKey:@"post"]valueForKey:@"title"];
+    else if (selectInteger == 2) {
+        
+//        coverNewsArray = [[[[dictionary objectForKey:@"posts"]objectAtIndex:0]objectForKey:@"post"]objectForKey:@"image"];
+        
+        NSLog(@"coverNewsFData...........----> %@",dictionary);
+        
+        NSString *strImagePath  = [NSString stringWithFormat:@"%@",[[[[dictionary objectForKey:@"posts"]objectAtIndex:0]valueForKey:@"post"]valueForKey:@"image"]];
+        [_imageviewTopTitle setImageWithURL:[NSURL URLWithString:strImagePath]];
+        
+        _labelTopTitle.text = [[[[dictionary objectForKey:@"posts"]objectAtIndex:0]valueForKey:@"post"]valueForKey:@"title"];
+        
+        strNID = [[[[dictionary objectForKey:@"posts"]objectAtIndex:0]valueForKey:@"post"]valueForKey:@"nid"];
+
+        
+    }
     
-    [_tableView reloadData];
+    
 }
 
 #pragma mark - Navigation bar button Action
@@ -199,6 +226,16 @@
    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)btnTopStoriesTap:(id)sender {
+    
+    DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
+    
+    vc.stringNID = strNID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 #pragma mark - CCKFNavDrawer Selection Section Method
 
 -(void)CCKFNavDrawerSelection:(NSString *)selectedIndexString :(NSString *)categoryId
@@ -251,8 +288,23 @@
         
         NSString *strImagePath  = [NSString stringWithFormat:@"%@",[imageArray objectAtIndex:indexPath.row]];
         [cell.imageview setImageWithURL:[NSURL URLWithString:strImagePath]];
-        cell.lblTitle.text = [nameArray objectAtIndex:indexPath.row];
         
+        
+        
+        NSString *htmlString = [nameArray objectAtIndex:indexPath.row];
+        NSAttributedString *attributedString = [[NSAttributedString alloc]
+                                                initWithData: [htmlString dataUsingEncoding:NSUnicodeStringEncoding]
+                                                options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
+                                                documentAttributes: nil
+                                                error: nil
+                                                ];
+
+        
+                cell.lblTitle.attributedText = attributedString;
+        
+        [cell.lblTitle setFont:[UIFont systemFontOfSize:14]];
+        
+
     return cell;
     }
 }
@@ -307,6 +359,8 @@
     {
         
         DescriptionVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DescriptionVC"];
+        
+        vc.stringNID = [NIDArray objectAtIndex:indexPath.row];
    
         [self.navigationController pushViewController:vc animated:YES];
     }
